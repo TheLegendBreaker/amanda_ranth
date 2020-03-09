@@ -1,0 +1,53 @@
+/* -- variables --*/
+
+/// colors
+
+///  end colors
+
+/// demenisons
+
+//screens
+$i5 : 320px;
+$base: 375px;
+$iplus : 414px;
+$ipad : 760px;
+$ipro : 1112px;
+$laptop : 1354px;
+/// end demenisons
+
+/* -- end variables -- */
+/* -- mixins  -- */
+
+/// media queries
+@mixin base {
+	@media(min-width:$base){
+		@content;
+	}
+}
+
+@mixin plus {
+	@media(min-width:$iplus){
+		@content;
+	}
+}
+
+@mixin pad {
+	@media(min-width:$ipad){
+		@content;
+	}
+}
+
+@mixin pro {
+	@media(min-width:$ipro){
+		@content;
+	}
+}
+
+@mixin laptop {
+	@media(min-width:$laptop){
+		@content;
+	}
+}
+/// end media queries
+
+/* -- end mixins  -- */

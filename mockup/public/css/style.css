@@ -1,0 +1,314 @@
+/* -- variables --*/
+/* -- end variables -- */
+/* -- mixins  -- */
+/* -- end mixins  -- */
+/* -- element config -- */
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica, Arial, Sans, Sans-Serif;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h5 {
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* -- end element config -- */
+/* -- utilies -- */
+/* where utility class go  */
+.serif {
+  font-family: Serif, Times, Times Roman;
+}
+
+.flex-middle {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+/* where modular elements get their base config */
+nav.nav ol {
+  counter-reset: count;
+}
+nav.nav ol li:active {
+  filter: invert(100%);
+  transform: scale(0.98);
+}
+nav.nav ol li.numberd {
+  counter-increment: count;
+}
+nav.nav ol li.numberd:before {
+  content: counter(count);
+  background: black;
+  color: white;
+  font-family: Times Roman, Serif, Times;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  position: relative;
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  bottom: 5px;
+  right: 15px;
+}
+nav.nav ol li a {
+  display: block;
+  padding: 5px 15px;
+  width: 100%;
+  height: 100%;
+  letter-spacing: 2px;
+  transition: all 0.2s ease;
+}
+nav.nav ol li a:hover {
+  font-family: Serif, Times Roman, Times;
+  color: white;
+  background: black;
+}
+nav.nav ol li a:active {
+  filter: invert(100%);
+  transform: scale(0.98);
+}
+nav.nav ol li ul.submenu {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  width: 200px;
+  background: black;
+  height: 0;
+  transition: all 0.2s ease;
+}
+nav.nav ol li ul.submenu:hover {
+  opacity: 1;
+  z-index: 1;
+  height: min-content;
+}
+nav.nav ol li ul.submenu:focus {
+  opacity: 1;
+  z-index: 1;
+  height: min-content;
+}
+nav.nav ol li ul.submenu a {
+  padding: 10px 5px;
+  color: white;
+}
+nav.nav ol li ul.submenu a:hover {
+  background: #333;
+}
+nav.nav ol li.show a {
+  font-family: Serif, Times Roman, Times;
+  color: white;
+  background: black;
+}
+nav.nav ol li.show > a:hover + ul.submenu {
+  opacity: 1;
+  z-index: 1;
+  height: min-content;
+}
+nav.nav ol li.show > a:focus + ul.submenu {
+  opacity: 1;
+  z-index: 1;
+  height: min-content;
+}
+
+.summary {
+  position: absolute;
+  text-align: justify;
+  background: white;
+  opacity: 0;
+  z-index: -1;
+  height: 0;
+  transition: all 0.5s ease;
+}
+.summary.show {
+  opacity: 1;
+  z-index: 1;
+  height: 100%;
+}
+
+.img-tab-crop {
+  overflow: hidden;
+}
+.img-tab-crop img {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+  height: 0;
+  transition: all 0.5s ease;
+}
+.img-tab-crop img.show {
+  z-index: 1;
+  opacity: 1;
+  width: 40%;
+  height: 100%;
+}
+
+article.card {
+  display: flex;
+  justify-content: space-between;
+}
+article.card .card-info {
+  width: 20%;
+}
+article.card figure {
+  flex-direction: column;
+  width: 30%;
+}
+article.card figure img {
+  height: 100%;
+}
+article.card section.card-details {
+  width: 50%;
+}
+
+footer {
+  padding: 0 50px;
+}
+
+#footer {
+  height: 191px;
+  border-top: 1px solid #333;
+  padding: 20px 50px;
+  margin: 0 auto;
+  max-width: 2000px;
+  display: flex;
+  justify-content: space-between;
+  text-align: justify;
+}
+#footer .feature {
+  width: 50%;
+}
+#footer .feature figure {
+  padding: 0 10px;
+}
+#footer .feature figure figcaption {
+  font-size: 10px;
+}
+#footer .feature .card {
+  height: 100%;
+  transition: all 0.2s ease;
+}
+#footer .feature .card:hover {
+  transform: scale(1.2);
+}
+#footer .feature .card:active {
+  transform: scale(0.98);
+  filter: invert(70%);
+}
+#footer .feature .card-info ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#footer .feature .card-info ul li {
+  font-size: 12px;
+  padding: 5px;
+  filter: invert(100%);
+  background: white;
+}
+#footer .feature .card-details {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+#footer .feature .card-details h1 {
+  margin-bottom: 40px;
+}
+#footer .links {
+  width: 40%;
+}
+#footer #lite-nav {
+  height: 100%;
+}
+#footer #lite-nav .nav {
+  height: 100%;
+}
+#footer #lite-nav .nav ol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+#footer #lite-nav .nav li.numberd:nth-child(3) {
+  display: none;
+}
+#footer #lite-nav .nav li.numberd:nth-child(4) {
+  display: none;
+}
+#footer #lite-nav .nav li.numberd:before {
+  display: none;
+}
+
+/* -- end utilies -- */
+/* -- dev -- */
+img {
+  background: black;
+}
+
+/* -- end dev -- */
+/* -- PAGES -- */
+/* -- index -- */
+#landing {
+  height: 700px;
+}
+#landing .container {
+  height: 100%;
+  display: flex;
+}
+#landing .sidebar {
+  display: flex;
+  width: 60%;
+  padding: 10px 0 30px 40px;
+  justify-content: space-between;
+}
+#landing .sidebar #nav {
+  width: 33%;
+  display: none;
+}
+@media (min-width: 760px) {
+  #landing .sidebar #nav {
+    display: unset;
+  }
+}
+#landing .sidebar #nav nav.nav {
+  height: 550px;
+}
+#landing .sidebar #nav nav.nav ol {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#landing .sidebar #page-summaries {
+  width: inherit;
+}
+#landing .sidebar #page-summaries .summaries {
+  margin: 0 auto;
+}
+#landing .sidebar #page-summaries .summaries .summary {
+  width: 29.7%;
+}
+#landing .sidebar #page-summaries .summaries .summary header {
+  margin-bottom: calc(33% - 47px);
+}
+#landing .hero {
+  width: 40%;
+  height: 100%;
+}
+
+/* -- end index -- */
+/* -- end PAGES -- */
+
+/*# sourceMappingURL=style.css.map */

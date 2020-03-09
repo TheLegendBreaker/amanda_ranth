@@ -1,0 +1,340 @@
+@import '_util.scss';
+/* -- element config -- */
+
+*{
+	padding: 0;
+	margin: 0;
+	font-family: Helvetica, Arial, Sans, Sans-Serif;
+	box-sizing: border-box;
+	// dev properties
+	// outline: dotted 1px lightblue;
+}
+
+h1, h2, h3, h4, h5, h5 {
+	font-weight: 400;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style: none;
+}
+
+/* -- end element config -- */
+/* -- utilies -- */
+/* where utility class go  */
+
+.serif{
+	font-family: Serif, Times, Times Roman;
+}
+.flex-middle{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+/* where modular elements get their base config */
+
+// nav menu
+nav.nav{
+	ol {
+		counter-reset: count;
+		li {
+			&:active{
+				filter: invert(100%);
+				transform: scale(.98);
+			}
+			&.numberd{
+				counter-increment: count;
+				&:before{
+					content: counter(count);
+					background: black;
+					color: white;
+					font-family: Times Roman, Serif, Times;
+					border-radius: 50%;
+					width: 15px;
+					height: 15px;
+					position: relative;
+					display: block;
+					text-align: center;
+					font-size: 12px;
+					bottom: 5px;
+					right: 15px;
+				}
+			}
+			a {
+				display: block;
+				padding: 5px 15px;
+				width: 100%;
+				height: 100%;
+				letter-spacing: 2px;
+				transition: all .2s ease;
+				&:hover{
+					font-family: Serif, Times Roman, Times;
+					color: white;
+					background: black;
+				}
+				&:active{
+					filter: invert(100%);
+					transform: scale(.98);
+				}
+			}
+			ul.submenu{
+				// hide it and take it out of doc flow
+				position: absolute;
+				z-index: -1;
+				opacity: 0;
+				width: 200px;
+				background: black;
+				height: 0;
+				transition: all .2s ease;
+				// once displayed hovering submenu will keep it displayed
+				&:hover{
+					opacity: 1;
+					z-index: 1;
+					height: min-content;
+				}
+				&:focus{
+					opacity: 1;
+					z-index: 1;
+					height: min-content;
+				}
+				a{
+					padding: 10px 5px;
+					color: white;
+					&:hover{
+						background: #333;
+					}
+				}
+			}
+			&.show{
+				a{
+					font-family: Serif, Times Roman, Times;
+					color: white;
+					background: black;
+				}
+				&>a {
+					&:hover + ul.submenu{ // pure css submenu - li parent of link and submenu can use adjacent sibling selector '+'. 
+						// the '>' makes it so only the direct children of the hoverd element effect each other. 
+						opacity: 1;
+						z-index: 1;
+						height: min-content;
+					}
+					&:focus + ul.submenu{ // allow submenues to be tab-able
+						opacity: 1;
+						z-index: 1;
+						height: min-content;
+					}
+				}
+			}// end submenu
+		}// end li
+	}// end ol
+}
+// end nav
+
+// summary tab text content
+.summary{
+	// base hides
+	position: absolute;
+	text-align: justify;
+	background: white;
+	opacity: 0;
+	z-index: -1;
+	height: 0;
+	transition: all .5s ease;
+	&.show{
+		opacity: 1;
+		z-index: 1;
+		height: 100%;
+	}
+}
+// end summary
+
+// tab img
+.img-tab-crop{
+	overflow: hidden;
+	img{
+		position: absolute;
+		opacity: 0;
+		z-index: -1;
+		height: 0;
+		transition: all .5s ease;
+		&.show{
+			z-index: 1;
+			opacity: 1;
+			width: 40%;
+			height: 100%;
+		}
+	}
+}
+// end tab img
+
+// card
+article.card{
+	display: flex;
+	justify-content: space-between;
+	.card-info{
+		width:20%;
+	}
+	figure{
+		flex-direction: column;
+		width: 30%;
+		img{
+			height: 100%;
+		}
+	}
+	section.card-details{
+		width: 50%
+	}
+}
+// end card
+
+// footer
+footer{
+	padding: 0 50px;
+}
+#footer{
+	height: 191px;
+	border-top: 1px solid #333;
+	padding: 20px 50px;
+	margin: 0 auto;
+	max-width: 2000px;
+	display: flex;
+	justify-content: space-between;
+	text-align: justify;
+	.feature{
+		width: 50%;
+		figure{
+			padding: 0 10px;
+			figcaption{
+				font-size: 10px;
+			}
+		}
+		.card{
+			height: 100%;
+			transition: all .2s ease;
+			&:hover{
+				transform: scale(1.2);
+			}
+			&:active{
+				transform: scale(.98);
+				filter: invert(70%);
+			}
+		}
+		.card-info{
+			ul{
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				li{
+					font-size: 12px;
+					padding: 5px;
+					filter: invert(100%);
+					background: white;
+				}
+			}
+		}
+		.card-details{
+			width: 40%;
+			display: flex;
+			flex-direction: column;
+			font-size: 12px;
+			h1{
+				margin-bottom: 40px;
+			}
+		}
+	}// end feature
+	.links{
+		width: 40%;
+	}
+	#lite-nav {
+		height: 100%;
+		.nav{
+			height: 100%;
+			ol{
+				display: flex;
+				flex-direction: column;
+				justify-content: space-evenly;
+				height: 100%;
+			}
+			li.numberd{
+				&:nth-child(3){
+					display: none;
+				}
+				&:nth-child(4){
+					display: none;
+				}
+				&:before{
+					display: none;
+				}
+			}
+		}
+	}// end local nav config
+}
+// end footer
+
+/* -- end utilies -- */
+/* -- dev -- */
+
+	img{
+		background: black;
+	}
+
+/* -- end dev -- */
+/* -- PAGES -- */
+/* -- index -- */
+
+#landing{
+	height: 700px;
+	.container{
+		height: 100%;
+		display: flex;
+	}
+	.sidebar{
+		display: flex;
+		width: 60%;
+		padding: 10px 0 30px 40px;
+		// padding-left: 40px;
+		justify-content: space-between;
+		#nav{
+			width: 33%;
+			display: none;
+			@include pad {
+				display: unset;
+			}
+			nav.nav{
+				height: 550px;
+				ol {
+					height: 100%;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+				}
+			}
+		}// end #nav
+		#page-summaries{
+			width: inherit;
+			.summaries {
+				// width:(60% * .66 * .75 );
+				margin: 0 auto;
+				.summary{
+					width:(60% * .66 * .75 );
+					header{
+						margin-bottom: calc(33% - 47px);
+					}
+				}
+			}
+		}//end #page-summaries
+	}// end .sidebar
+	.hero{
+		width: 40%;
+		height: 100%;
+	}
+
+}//end #landing
+
+/* -- end index -- */
+/* -- end PAGES -- */
