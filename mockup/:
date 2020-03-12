@@ -7,7 +7,7 @@
 	font-family: Helvetica, Arial, Sans, Sans-Serif;
 	box-sizing: border-box;
 	// dev properties
-	outline: dotted 1px lightblue;
+	// outline: dotted 1px lightblue;
 }
 
 h1, h2, h3, h4, h5, h5 {
@@ -63,6 +63,8 @@ button{
 // top bar
 #top-bar{
 	padding-right: 15px;
+	display: flex;
+	justify-content: space-between;
 	.logo{
 		padding: 10px 15px;
 		h1{
@@ -73,65 +75,34 @@ button{
 		}
 	}// .logo
 	#top-nav{
-		width: 100vw;
-		height: 0;
-		display: flex;
-		flex-direction: row-reverse;
-		transition: all .3s ease;
-		&.show{
-			height: min-content;
-			padding: 10px 0;
-		}
-		i#hamburger {
-			position: relative;
-			bottom: 30px;
-			right: 15px;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			width: 20px;
-			height: 20px;
-			.bar{
-				width: 100%;
-				height: 4px;
-				margin: 2px 0;
-				background: black;
-			}
-		}// end i
+		width: 85px;
 		.nav{
 			position: absolute;
 			background: white;
 			opacity: 0;
-			width: 100%;
 			height: 0;
 			z-index: -1;
-			transition: all .5s ease, opacity 1ms, padding 1ms;
+			padding: 20px 0 10px 0;
+			transition: all .2s ease, opacity 1ms;
 			&.show{
 				opacity: 1;
 				height: min-content;
-				z-index: 5;
-				padding: 20px 0 10px 30px;
+				z-index: 1;
+			}
+			i{
+				display: block;
+				.bar{
+					width: 100%
+					height: 16.5%;
+					background: black;
+				}
 			}
 			.numberd{
-			&:nth-child(3)>a:before, &:nth-child(4)>a:before {
-				content: "\232A";
-				transform: rotate(90deg);
-				line-height: .5px;
-				font-weight: 600;
-			}
 				&:before{
-					bottom: 0;
+					display: none;
 				}
 			}
-			.submenu {
-				left: 30%;
-				&.show{
-					opacity: 1;
-					height: min-content;
-					z-index: 6;
-				}
-			}
-		}// end .nav
+		}
 	}// end #top-nav
 }
 // end top bar
@@ -186,7 +157,7 @@ nav.nav{
 				z-index: -1;
 				opacity: 0;
 				width: 200px;
-				background: #555;
+				background: #333;
 				height: 0;
 				transition: all .6s ease;
 				// once displayed hovering submenu will keep it displayed
@@ -292,28 +263,19 @@ article.card{
 
 // footer
 footer{
-	@include pad {
-		padding: 0 50px;
-	}
+	padding: 0 50px;
 }
 #footer{
+	height: 191px;
 	border-top: 1px solid #333;
+	padding: 20px 50px;
 	margin: 0 auto;
 	max-width: 2000px;
 	display: flex;
 	justify-content: space-between;
-	flex-direction: column;
 	text-align: justify;
-	padding-top: 20px;
-	@include pad {
-		flex-direction: row;
-		height: 191px;
-		padding: 20px 50px;
-	}
 	.feature{
-		@include pad {
-			width: 50%;
-		}
+		width: 50%;
 		figure{
 			padding: 0 10px;
 			figcaption{
@@ -322,11 +284,7 @@ footer{
 		}
 		.card{
 			height: 100%;
-			justify-content: space-evenly;
 			transition: all .2s ease;
-			@include pad {
-				justify-content: space-between;
-			}
 			&:hover{
 				transform: scale(1.2);
 			}
@@ -360,9 +318,7 @@ footer{
 		}
 	}// end feature
 	.links{
-		@include pad {
-			width: 40%;
-		}
+		width: 40%;
 	}
 	#lite-nav {
 		height: 100%;
@@ -375,10 +331,6 @@ footer{
 				height: 100%;
 			}
 			li.numberd{
-				text-align: center;
-				@include pad {
-					text-align: left;
-				}
 				&:nth-child(3){
 					display: none;
 				}
@@ -406,15 +358,8 @@ footer{
 /* -- PAGES -- */
 /* -- index -- */
 
-#top-bar{
-	@include pad{
-		display: none;
-	}
-}
 #landing{
-	@include pad{
-		height: 700px;
-	}
+	height: 700px;
 	.container{
 		height: 100%;
 		display: flex;
@@ -447,7 +392,7 @@ footer{
 			}
 		}// end #nav
 		#page-summaries{
-			width: 90%;
+			width: 80%;
 			@include pad{
 				width: inherit;
 			}
@@ -458,10 +403,7 @@ footer{
 					position: static;
 					z-index: unset;
 					opacity: 1;
-					height:460px ;
-					@include plus {
-						height: 420px
-					}
+					height:450px ;
 					@include pad {
 						position: absolute;
 						z-index: -1;
@@ -484,7 +426,6 @@ footer{
 							margin: 20px auto;
 						}
 						button{
-							font-size: 13px;
 							width: 120px;
 							@include pad {
 								display: none;
@@ -510,15 +451,12 @@ footer{
 			position: static;
 			z-index: unset;
 			opacity: 1;
-			height: 460px;
-			@include plus {
-				height: 420px;
-			}
+			height: 450px;
 			@include pad {
 				position: absolute;
 				z-index: -1;
 				opacity: 0;
-				height: 700px;
+				height: 100%;
 			}
 			&.show{
 				width: 100%;
