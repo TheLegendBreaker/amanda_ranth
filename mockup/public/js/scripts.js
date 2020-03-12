@@ -23,6 +23,11 @@ $(document).ready(function(){
  /* -- mobile view functions  -- */
 /// topbar nav
 
+	// hamburger to x
+	$('#hamburger').click(function(){
+		$('#hamburger .bar').toggleClass('x');
+	});
+
 	// open/close nav menu
 	$('#hamburger').click(function(){
 		const icon = this;

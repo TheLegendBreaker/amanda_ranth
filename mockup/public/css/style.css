@@ -105,6 +105,22 @@ button:active {
   height: 4px;
   margin: 2px 0;
   background: black;
+  position: relative;
+  transition: all 0.2s ease;
+}
+#top-bar #top-nav i#hamburger .bar.x {
+  height: 3px;
+}
+#top-bar #top-nav i#hamburger .bar.x:nth-child(1) {
+  transform: rotate(45deg);
+}
+#top-bar #top-nav i#hamburger .bar.x:nth-child(2) {
+  opacity: 0;
+  height: 0;
+}
+#top-bar #top-nav i#hamburger .bar.x:nth-child(3) {
+  transform: rotate(-45deg);
+  bottom: 13px;
 }
 #top-bar #top-nav .nav {
   position: absolute;
@@ -455,7 +471,8 @@ img {
   position: static;
   z-index: unset;
   opacity: 1;
-  height: 460px;
+  height: 480px;
+  padding-left: 10px;
 }
 @media (min-width: 414px) {
   #landing .sidebar #page-summaries .summaries .summary {
@@ -511,7 +528,7 @@ img {
   position: static;
   z-index: unset;
   opacity: 1;
-  height: 460px;
+  height: 480px;
 }
 @media (min-width: 414px) {
   #landing #hero-img img {
