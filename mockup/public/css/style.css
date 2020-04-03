@@ -68,6 +68,12 @@ button:active {
 #top-bar {
   padding-right: 15px;
 }
+@media (min-width: 760px) {
+  #top-bar {
+    display: flex;
+    justify-content: space-between;
+  }
+}
 #top-bar .logo {
   padding: 10px 15px;
 }
@@ -86,6 +92,12 @@ button:active {
   flex-direction: row-reverse;
   transition: all 0.3s ease;
 }
+@media (min-width: 760px) {
+  #top-bar #top-nav {
+    width: min-content;
+    height: unset;
+  }
+}
 #top-bar #top-nav.show {
   height: min-content;
   padding: 10px 0;
@@ -99,6 +111,11 @@ button:active {
   justify-content: space-between;
   width: 20px;
   height: 20px;
+}
+@media (min-width: 760px) {
+  #top-bar #top-nav i#hamburger {
+    display: none;
+  }
 }
 #top-bar #top-nav i#hamburger .bar {
   width: 100%;
@@ -131,11 +148,31 @@ button:active {
   z-index: -1;
   transition: all 0.5s ease, opacity 1ms, padding 1ms;
 }
+@media (min-width: 760px) {
+  #top-bar #top-nav .nav {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    opacity: 1;
+    z-index: 20;
+    position: static;
+  }
+}
+@media (min-width: 760px) {
+  #top-bar #top-nav .nav ol {
+    display: flex;
+  }
+}
 #top-bar #top-nav .nav.show {
   opacity: 1;
   height: min-content;
   z-index: 5;
   padding: 20px 0 10px 30px;
+}
+@media (min-width: 760px) {
+  #top-bar #top-nav .nav .numberd {
+    width: 200px;
+  }
 }
 #top-bar #top-nav .nav .numberd:nth-child(3) > a:before, #top-bar #top-nav .nav .numberd:nth-child(4) > a:before {
   content: "〉";
@@ -146,8 +183,18 @@ button:active {
 #top-bar #top-nav .nav .numberd:before {
   bottom: 0;
 }
+@media (min-width: 760px) {
+  #top-bar #top-nav .nav .numberd:before {
+    display: none;
+  }
+}
 #top-bar #top-nav .nav .submenu {
   left: 30%;
+}
+@media (min-width: 760px) {
+  #top-bar #top-nav .nav .submenu {
+    left: unset;
+  }
 }
 #top-bar #top-nav .nav .submenu.show {
   opacity: 1;
@@ -161,6 +208,14 @@ nav.nav ol {
 nav.nav ol li:active {
   filter: invert(100%);
   transform: scale(0.98);
+}
+nav.nav ol li:hover a {
+  font-family: Serif, Times Roman, Times;
+  color: white;
+  background: black;
+}
+nav.nav ol li:hover ul.submenu a {
+  background: #555;
 }
 nav.nav ol li.numberd {
   counter-increment: count;
@@ -204,7 +259,8 @@ nav.nav ol li ul.submenu {
   width: 200px;
   background: #555;
   height: 0;
-  transition: all 0.6s ease;
+  overflow: hidden;
+  transition: height 0.3s ease;
 }
 nav.nav ol li ul.submenu:hover {
   opacity: 1;
@@ -223,20 +279,20 @@ nav.nav ol li ul.submenu a {
 nav.nav ol li ul.submenu a:hover {
   background: #333;
 }
+nav.nav ol li > a:hover + ul.submenu {
+  opacity: 1;
+  z-index: 1;
+  height: 78px;
+}
+nav.nav ol li > a:focus + ul.submenu {
+  opacity: 1;
+  z-index: 1;
+  height: min-content;
+}
 nav.nav ol li.show a {
   font-family: Serif, Times Roman, Times;
   color: white;
   background: black;
-}
-nav.nav ol li.show > a:hover + ul.submenu {
-  opacity: 1;
-  z-index: 1;
-  height: min-content;
-}
-nav.nav ol li.show > a:focus + ul.submenu {
-  opacity: 1;
-  z-index: 1;
-  height: min-content;
 }
 
 .summary {
@@ -407,7 +463,7 @@ img {
 /* -- PAGES -- */
 /* -- index -- */
 @media (min-width: 760px) {
-  #top-bar {
+  #landing-bar #top-bar {
     display: none;
   }
 }

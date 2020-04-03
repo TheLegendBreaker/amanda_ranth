@@ -63,6 +63,10 @@ button{
 // top bar
 #top-bar{
 	padding-right: 15px;
+	@include pad {
+		display: flex;
+		justify-content: space-between;
+	}
 	.logo{
 		padding: 10px 15px;
 		h1{
@@ -78,6 +82,10 @@ button{
 		display: flex;
 		flex-direction: row-reverse;
 		transition: all .3s ease;
+		@include pad {
+			width: min-content;
+			height: unset;
+		}
 		&.show{
 			height: min-content;
 			padding: 10px 0;
@@ -91,6 +99,9 @@ button{
 			justify-content: space-between;
 			width: 20px;
 			height: 20px;
+			@include pad {
+				display: none;
+			}
 			.bar{
 				width: 100%;
 				height: 4px;
@@ -112,8 +123,8 @@ button{
 						transform: rotate(-45deg);
 						bottom: 13px;
 					}
-				}
-			}
+				}// end .x
+			}// end .bar
 		}// end i
 		.nav{
 			position: absolute;
@@ -123,6 +134,19 @@ button{
 			height: 0;
 			z-index: -1;
 			transition: all .5s ease, opacity 1ms, padding 1ms;
+			@include pad {
+				display: flex;
+				flex-direction: row;
+				height: 100%;
+				opacity: 1;
+				z-index: 20;
+				position: static;
+			}
+			ol{
+				@include pad {
+					display: flex;
+				}
+			}
 			&.show{
 				opacity: 1;
 				height: min-content;
@@ -130,18 +154,27 @@ button{
 				padding: 20px 0 10px 30px;
 			}
 			.numberd{
-			&:nth-child(3)>a:before, &:nth-child(4)>a:before {
-				content: "\232A";
-				transform: rotate(90deg);
-				line-height: .5px;
-				font-weight: 600;
-			}
+				@include pad {
+					width: 200px;
+				}
+				&:nth-child(3)>a:before, &:nth-child(4)>a:before {
+					content: "\232A";
+					transform: rotate(90deg);
+					line-height: .5px;
+					font-weight: 600;
+				}
 				&:before{
 					bottom: 0;
+					@include pad {
+						display: none;
+					}
 				}
 			}
 			.submenu {
 				left: 30%;
+				@include pad {
+					left: unset;
+				}
 				&.show{
 					opacity: 1;
 					height: min-content;
@@ -161,6 +194,16 @@ nav.nav{
 			&:active{
 				filter: invert(100%);
 				transform: scale(.98);
+			}
+			&:hover {
+				a{
+					font-family: Serif, Times Roman, Times;
+					color: white;
+					background: black;
+				}
+				ul.submenu a {
+					background: #555;
+				}
 			}
 			&.numberd{
 				counter-increment: count;
@@ -205,7 +248,8 @@ nav.nav{
 				width: 200px;
 				background: #555;
 				height: 0;
-				transition: all .6s ease;
+				overflow: hidden;
+				transition: height .3s ease;
 				// once displayed hovering submenu will keep it displayed
 				&:hover{
 					opacity: 1;
@@ -224,6 +268,19 @@ nav.nav{
 						background: #333;
 					}
 				}
+			}// end submenu
+			&>a {
+				&:hover + ul.submenu{ // pure css submenu - li parent of link and submenu can use adjacent sibling selector '+'. 
+					// the '>' makes it so only the direct children of the hoverd element effect each other. 
+					opacity: 1;
+					z-index: 1;
+					height: 78px;
+				}
+				&:focus + ul.submenu{ // allow submenues to be tab-able
+					opacity: 1;
+					z-index: 1;
+					height: min-content;
+				}
 			}
 			&.show{
 				a{
@@ -231,20 +288,7 @@ nav.nav{
 					color: white;
 					background: black;
 				}
-				&>a {
-					&:hover + ul.submenu{ // pure css submenu - li parent of link and submenu can use adjacent sibling selector '+'. 
-						// the '>' makes it so only the direct children of the hoverd element effect each other. 
-						opacity: 1;
-						z-index: 1;
-						height: min-content;
-					}
-					&:focus + ul.submenu{ // allow submenues to be tab-able
-						opacity: 1;
-						z-index: 1;
-						height: min-content;
-					}
-				}
-			}// end submenu
+			}
 		}// end li
 	}// end ol
 }
@@ -423,11 +467,13 @@ footer{
 /* -- PAGES -- */
 /* -- index -- */
 
-#top-bar{
-	@include pad{
-		display: none;
+#landing-bar{
+		#top-bar{
+			@include pad{
+				display: none;
+			}
+		}
 	}
-}
 #landing{
 	@include pad{
 		height: 700px;
